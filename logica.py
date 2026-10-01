@@ -1,146 +1,94 @@
-#encontra qual resultado possui o menor preço
+# encontra o menor preço
 def encontrar_menor_preco(resultados):
 
-    #procura o menor preço
-    menor = min(resultados, key=lambda item: item["Preço"])
+    menor = resultados[0]
 
-    #loja mais barata
+    for resultado in resultados:
+
+        if resultado["Preço"] < menor["Preço"]:
+            menor = resultado
+
     return menor
 
-#porcentagem de variação dos preços
-def calcular_variacao(preco_anterior, preco_atual):
 
-    #calcula quanto o preço mudou em relação ao preço anterior
-    variacao = ((preco_atual - preco_anterior) / preco_anterior) * 100
-
-    #retorna a porcentagem
-    return variacao
-
-#calcula a média dos preços encontrados
+# calcula a média dos preços
 def calcular_media_precos(resultados):
 
-    #começa a soma dos preços com zero
     total = 0
 
-    #análisa todos os resultados encontrados
     for resultado in resultados:
 
-        #preço atual
         total = total + resultado["Preço"]
 
-    #divide o total de acordo com a quantidade de resultados
     media = total / len(resultados)
 
-    #retorna a média
     return media
 
-#principais dados
-def preparar_resumo(resultados, preco_anterior=None):
 
-    #menor preço
-    menor = encontrar_menor_preco(resultados)
+# calcula a variação do preço
+def calcular_variacao(preco_anterior, preco_atual):
 
-    #média dos preços
-    media = calcular_media_precos(resultados)
+    variacao = ((preco_atual - preco_anterior) / preco_anterior) * 100
 
-    #resumo das infos
-    resumo = {
-        "menor_preco": menor["Preço"],
-        "loja_menor_preco": menor["Loja"],
-        "url_menor_preco": menor["Url"],
-        "quantidade_resultados": len(resultados),
-        "preco_medio": media
+    return variacao
+
+
+# dados de teste
+resultados = [
+    {
+        "Loja": "Mercado Livre",
+        "Preço": 429.90,
+        "Url": "https://www.mercadolivre.com.br"
+    },
+    {
+        "Loja": "Amazon",
+        "Preço": 379.90,
+        "Url": "https://www.amazon.com.br"
+    },
+    {
+        "Loja": "KaBuM",
+        "Preço": 399.90,
+        "Url": "https://www.kabum.com.br"
     }
+]
 
-    #verifica se existe um preço anterior
-    if preco_anterior is not None:
 
-        #calcula a variação
-        variacao = calcular_variacao(
-            preco_anterior,
-            menor["Preço"]
-        )
+# preço encontrado anteriormente
+preco_anterior = 359.90
 
-        resumo["variacao"] = variacao
 
-    #retorna o resumo por completo
-    return resumo
+# encontra o menor preço
+menor = encontrar_menor_preco(resultados)
 
-#essa parte só roda quando executamos diretamente o arquivo da logica.py
-if __name__ == "__main__":
+# calcula a média
+media = calcular_media_precos(resultados)
 
-    #dados teste
-    resultados = [
-        {
-            "Loja": "Mercado Livre",
-            "Preço": 429.90,
-            "Url": "https://mercadolivre.com.br"
-        },
-        {
-            "Loja": "Amazon",
-            "Preço": 379.90,
-            "Url": "https://amazon.com.br"
-        },
-        {
-            "Loja": "KaBuM",
-            "Preço": 399.90,
-            "Url": "https://kabum.com.br"
-        }
-    ]
+# calcula a variação
+variacao = calcular_variacao(
+    preco_anterior,
+    menor["Preço"]
+)
 
-    #simula o preço encontrado anteriormente
-    preco_anterior = 359.90
 
-    resumo = preparar_resumo(
-        resultados,
-        preco_anterior
-    )
+print("PriceWatch")
+print()
 
-    print("PriceWatch - Resumo")
-    print()
+print("Preços encontrados:")
 
-    #mostra os preços encontrados (iinseridos manualmente por enquanto)
-    print("Preços localizados:")
-
-    for resultado in resultados:
-
-        print(
-            resultado["Loja"],
-            "- R$",
-            resultado["Preço"]
-        )
-
-    print()
+for resultado in resultados:
 
     print(
-        "Menor preço: R$",
-        resumo["menor_preco"]
+        resultado["Loja"],
+        "- R$",
+        resultado["Preço"],
+        "-",
+        resultado["Url"]
     )
 
-    print(
-        "Loja:",
-        resumo["loja_menor_preco"]
-    )
+print()
 
-    print(
-        "Link:",
-        resumo["url_menor_preco"]
-    )
-
-    print(
-        "Quantidade de resultados:",
-        resumo["quantidade_resultados"]
-    )
-
-    print(
-        "Preço médio: R$",
-        round(resumo["preco_medio"], 2)
-    )
-
-    if "variacao" in resumo:
-
-        print(
-            "Variação:",
-            round(resumo["variacao"], 2),
-            "%"
-        )
+print("Menor preço:", menor["Preço"])
+print("Loja:", menor["Loja"])
+print("Link:", menor["Url"])
+print("Preço médio:", round(media, 2))
+print("Variação:", round(variacao, 2), "%")
