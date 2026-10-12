@@ -1,87 +1,59 @@
-#Primeiro commit (teste).
-
 from flask import Flask, jsonify
-from flask_sqlalchemy import SQLAlchemy
-from flask_cors import CORS
-from urllib.parse import quote_plus
-
+import pyodbc
 
 app = Flask(__name__)
-CORS(app)
 
 
 # Conexão com o SQL Server
-conexao = quote_plus(
+conexao = pyodbc.connect(
     "DRIVER={ODBC Driver 17 for SQL Server};"
-    "SERVER=SEU_SERVIDOR;"
-    "DATABASE=SEU_BANCO;"
+    "SERVER= 'Colocar o Servidor' ;" #Falta colocar o servidor!
+    "DATABASE=PriceWatch;"
     "Trusted_Connection=yes;"
     "TrustServerCertificate=yes;"
 )
 
-app.config["SQLALCHEMY_DATABASE_URI"] = (
-    f"mssql+pyodbc:///?odbc_connect={conexao}"
-)
 
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-
-db = SQLAlchemy(app)
-
-
-# Model
-class Produto(db.Model):
-    __tablename__ = "Produtos"
-
-    id_produtos = db.Column(
-        db.Integer,
-        primary_key=True
-    )
-
-    nome_produto = db.Column(
-        db.String(150),
-        nullable=False
-    )
-
-    marca_produto = db.Column(
-        db.String(150),
-        nullable=False
-    )
-
-
-# Rota principal
 @app.route("/")
 def home():
-
     return jsonify({
         "mensagem": "API PriceWatch funcionando"
     })
 
 
-# Rota para listar produtos
 @app.route("/api/produtos", methods=["GET"])
 def listar_produtos():
 
-    produtos = Produto.query.all()
+    cursor = conexao.cursor()
 
-    resultado = []
+    cursor.execute("""
+        SELECT
+            id_produtos,
+            nome_produto,
+            modelo_produto,
+            marca_produto,
+            armazenamento,
+            cor,
+            id_categoria
+        FROM Produtos
+    """)
 
-    for produto in produtos:
+    produtos = []
 
-        resultado.append({
+    for produto in cursor.fetchall():
+
+        produtos.append({
             "id": produto.id_produtos,
             "nome": produto.nome_produto,
-            "marca": produto.marca_produto
+            "modelo": produto.modelo_produto,
+            "marca": produto.marca_produto,
+            "armazenamento": produto.armazenamento,
+            "cor": produto.cor,
+            "id_categoria": produto.id_categoria
         })
 
-    return jsonify(resultado)
+    return jsonify(produtos)
 
 
 if __name__ == "__main__":
     app.run(debug=True)
-
-    #anotações:
-    
-    #from flask_cors import CORS - serve para permitir que o front-end de outro endereço do meu consiga se comunicar com o Flask
-
-    #from urllib.parse import quote_plus - ajuda a transformar a configuração do SQL Server em um formato que o SQLAlchemy consiga entender
-
