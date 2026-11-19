@@ -30,6 +30,7 @@ document.querySelector('[data-show-register]').addEventListener('click', showReg
 document.querySelector('[data-show-login]').addEventListener('click', showLogin);
 
 const registerForm = document.querySelector('#registerForm');
+const loginForm = document.querySelector('#loginForm');
 const password = document.querySelector('#registerPassword');
 const passwordConfirmation = document.querySelector('#confirmPassword');
 
@@ -47,6 +48,11 @@ passwordConfirmation.addEventListener('input', validatePasswordConfirmation);
 document.querySelectorAll('form').forEach((form) => {
   form.addEventListener('submit', (event) => {
     event.preventDefault();
+
+    if (form === loginForm) {
+      window.location.href = 'dashboard.html';
+      return;
+    }
 
     if (form === registerForm) {
       validatePasswordConfirmation();

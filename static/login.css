@@ -152,9 +152,16 @@ input:focus {
 }
 
 .switch-form button,
-.back-link {
+.back-link,
+.guest-link {
   color: var(--blue);
   text-decoration: none;
+}
+
+.guest-link {
+  margin-top: 18px;
+  text-align: center;
+  font-size: 13px;
 }
 
 .switch-form button {
