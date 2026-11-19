@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 # Conexão com o SQL Server
 conexao = pyodbc.connect(
-    "DRIVER={ODBC Driver 17 for SQL Server};"
+    "DRIVER={ODBC Driver 18 for SQL Server};"
     "SERVER= 'Colocar o Servidor' ;" #Falta colocar o servidor!
     "DATABASE=PriceWatch;"
     "Trusted_Connection=yes;"
