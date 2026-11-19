@@ -35,75 +35,75 @@
         </div>
       </header>
 
-      <div class="content-grid">
-        <div class="primary-column">
-          <section class="panel price-panel" id="resumo-precos">
-            <div class="panel-heading">
-              <div>
-                <p class="eyebrow">RESUMO</p>
-                <h2>Produtos encontrados</h2>
-              </div>
-              <span class="example-label" id="productCount">3 produtos de exemplo</span>
+      <section class="primary-column">
+        <section class="panel price-panel" id="resumo-precos">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">RESUMO</p>
+              <h2>Produtos encontrados</h2>
             </div>
+            <span class="example-label" id="productCount">3 produtos de exemplo</span>
+          </div>
 
-            <form class="search-form" id="productSearchForm" role="search">
-              <label class="visually-hidden" for="productSearch">Pesquisar produtos</label>
-              <div class="search-control">
-                <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true">
-                  <circle cx="10.8" cy="10.8" r="6.3"></circle>
-                  <path d="m15.5 15.5 4.2 4.2"></path>
-                </svg>
-                <input id="productSearch" name="pesquisa" type="search" placeholder="Pesquise por um produto...">
-                <button class="search-button" type="submit">Pesquisar</button>
-              </div>
-            </form>
+          <form class="search-form" id="productSearchForm" role="search">
+            <label class="visually-hidden" for="productSearch">Pesquisar produtos</label>
+            <div class="search-control">
+              <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="10.8" cy="10.8" r="6.3"></circle>
+                <path d="m15.5 15.5 4.2 4.2"></path>
+              </svg>
+              <input id="productSearch" name="pesquisa" type="search" placeholder="Pesquise por um produto...">
+              <button class="search-button" type="submit">Pesquisar</button>
+            </div>
+          </form>
 
-            <p class="search-message" id="searchMessage" role="status" aria-live="polite" hidden></p>
+          <p class="search-message" id="searchMessage" role="status" aria-live="polite" hidden></p>
 
-            <div class="price-row price-header" aria-hidden="true">
-              <span>Produto</span>
-              <span>Fornecedor</span>
-              <span>Preço exemplo</span>
+          <div class="products-table" role="table" aria-label="Produtos e preços demonstrativos">
+            <div class="price-row price-header" role="row">
+              <span role="columnheader">Produto</span>
+              <span role="columnheader">Fornecedor</span>
+              <span role="columnheader">Preço exemplo</span>
             </div>
-            <div class="price-row" data-product-id="cafe">
-              <span>Café especial 500 g</span>
-              <span>Mercado Central</span>
-              <strong>R$ 38,90</strong>
+            <div class="price-row" data-product-id="cafe" role="row">
+              <span role="cell">Café especial 500 g</span>
+              <span role="cell">Mercado Central</span>
+              <strong role="cell">R$ 38,90</strong>
             </div>
-            <div class="price-row" data-product-id="fone">
-              <span>Fone Bluetooth</span>
-              <span>Loja Horizonte</span>
-              <strong>R$ 239,90</strong>
+            <div class="price-row" data-product-id="fone" role="row">
+              <span role="cell">Fone Bluetooth</span>
+              <span role="cell">Loja Horizonte</span>
+              <strong role="cell">R$ 239,90</strong>
             </div>
-            <div class="price-row" data-product-id="monitor">
-              <span>Monitor 24 polegadas</span>
-              <span>Tech &amp; Cia</span>
-              <strong>R$ 699,00</strong>
+            <div class="price-row" data-product-id="monitor" role="row">
+              <span role="cell">Monitor 24 polegadas</span>
+              <span role="cell">Tech &amp; Cia</span>
+              <strong role="cell">R$ 699,00</strong>
             </div>
+          </div>
 
-            <p class="future-note">Área preparada para futuras análises automatizadas. Nenhuma busca por IA está ativa.</p>
-          </section>
+          <p class="future-note">Área preparada para futuras análises automatizadas. Nenhuma busca por IA está ativa.</p>
+        </section>
 
-          <section class="panel comparison-panel" id="comparacao">
-            <div class="panel-heading">
-              <div>
-                <p class="eyebrow">DADOS DEMONSTRATIVOS</p>
-                <h2>Comparação de produtos</h2>
-              </div>
+        <section class="panel comparison-panel" id="comparacao">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">DADOS DEMONSTRATIVOS</p>
+              <h2>Comparação de produtos</h2>
             </div>
-            <form class="comparison-form" id="comparisonForm">
-              <label for="comparisonProduct">Produto</label>
-              <select id="comparisonProduct" name="produto" required>
-                <option value="" selected disabled>Selecione um produto</option>
-              </select>
-              <button class="compare-button" type="submit">Comparar preços</button>
-            </form>
-            <div class="comparison-results" id="comparisonResults" aria-live="polite">
-              <p>Selecione um produto para comparar ofertas fictícias entre fornecedores.</p>
-            </div>
-          </section>
-        </div>
-      </div>
+          </div>
+          <form class="comparison-form" id="comparisonForm">
+            <label for="comparisonProduct">Produto</label>
+            <select id="comparisonProduct" name="produto" required>
+              <option value="" selected disabled>Selecione um produto</option>
+            </select>
+            <button class="compare-button" type="submit">Comparar preços</button>
+          </form>
+          <div class="comparison-results" id="comparisonResults" aria-live="polite">
+            <p>Selecione um produto para comparar ofertas fictícias entre fornecedores.</p>
+          </div>
+        </section>
+      </section>
 
       <footer class="page-footer">PriceWatch · Painel demonstrativo</footer>
     </main>
