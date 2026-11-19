@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111315">
+  <title>Acessar conta — PriceWatch</title>
+  <link rel="stylesheet" href="../static/login.css">
+</head>
+<body>
+  <main class="auth-page">
+    <a class="brand" href="index.html" aria-label="PriceWatch, voltar ao início">
+      <span class="brand-mark" aria-hidden="true">P</span>
+      <span>price<strong>watch</strong></span>
+    </a>
+
+    <section class="auth-card" aria-label="Acesso ao PriceWatch">
+      <div class="auth-tabs" role="tablist" aria-label="Login ou cadastro">
+        <button class="auth-tab is-active" id="loginTab" type="button" role="tab" aria-selected="true" aria-controls="loginPanel">Login</button>
+        <button class="auth-tab" id="registerTab" type="button" role="tab" aria-selected="false" aria-controls="registerPanel">Cadastro</button>
+      </div>
+
+      <section id="loginPanel" role="tabpanel" aria-labelledby="loginTab">
+        <h1>Bem-vindo de volta</h1>
+        <p class="intro">Entre na sua conta PriceWatch.</p>
+        <form id="loginForm" method="post">
+          <label for="loginEmail">E-mail</label>
+          <input id="loginEmail" name="email" type="email" autocomplete="email" required>
+
+          <label for="loginPassword">Senha</label>
+          <input id="loginPassword" name="senha" type="password" autocomplete="current-password" required>
+
+          <button class="submit-button" type="submit">Entrar</button>
+        </form>
+        <p class="switch-form">Não tem uma conta? <button type="button" data-show-register>Cadastre-se</button></p>
+      </section>
+
+      <section id="registerPanel" role="tabpanel" aria-labelledby="registerTab" hidden>
+        <h1>Crie sua conta</h1>
+        <p class="intro">Cadastre-se para começar a usar o PriceWatch.</p>
+        <form id="registerForm" method="post">
+          <label for="fullName">Nome completo</label>
+          <input id="fullName" name="nome" type="text" autocomplete="name" required>
+
+          <label for="registerEmail">E-mail</label>
+          <input id="registerEmail" name="email" type="email" autocomplete="email" required>
+
+          <label for="registerPassword">Senha</label>
+          <input id="registerPassword" name="senha" type="password" autocomplete="new-password" minlength="8" required>
+
+          <label for="confirmPassword">Confirme a senha</label>
+          <input id="confirmPassword" name="confirmacao_senha" type="password" autocomplete="new-password" minlength="8" required>
+
+          <button class="submit-button" type="submit">Criar conta</button>
+        </form>
+        <p class="switch-form">Já tem uma conta? <button type="button" data-show-login>Voltar ao login</button></p>
+      </section>
+
+      <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+    </section>
+
+    <a class="back-link" href="index.html">← Voltar para a página inicial</a>
+  </main>
+  <script src="../static/login.js"></script>
+</body>
+</html>
