@@ -10,7 +10,7 @@
 <body>
   <div class="dashboard-layout">
     <aside class="sidebar">
-      <a class="brand" href="index.html" aria-label="PriceWatch, página inicial">
+        <a class="brand" href="{{ url_for('home') }}" aria-label="PriceWatch, página inicial">
         <span class="brand-mark" aria-hidden="true">P</span>
         <span>Price<strong>Watch</strong></span>
       </a>
@@ -20,7 +20,7 @@
         <a class="menu-link active" href="#visao-geral" aria-current="page">Visão geral</a>
       </nav>
 
-      <a class="sign-out" href="index.html">Sair</a>
+      <a class="sign-out" href="{{ url_for('home') }}">Sair</a>
     </aside>
 
     <main class="main-content" id="visao-geral">
@@ -61,9 +61,9 @@
 
           <div class="products-table" role="table" aria-label="Produtos e preços demonstrativos">
             <div class="price-row price-header" role="row">
-              <span role="columnheader">Produto</span>
-              <span role="columnheader">Fornecedor</span>
-              <span role="columnheader">Preço exemplo</span>
+            <span role="columnheader">Produto</span>
+            <span role="columnheader">Marca</span>
+            <span role="columnheader">Preço</span>
             </div>
             <div class="price-row" data-product-id="cafe" role="row">
               <span role="cell">Café especial 500 g</span>

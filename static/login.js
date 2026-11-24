@@ -50,7 +50,7 @@ document.querySelectorAll('form').forEach((form) => {
     event.preventDefault();
 
     if (form === loginForm) {
-      window.location.href = 'dashboard.html';
+      window.location.href = '/dashboard';
       return;
     }
 

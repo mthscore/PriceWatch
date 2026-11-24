@@ -1,58 +1,49 @@
-from flask import Flask, jsonify
-import pyodbc
+
+from flask import Flask, jsonify, render_template
+from banco import listar_produtos, listar_historico_precos
 
 app = Flask(__name__)
 
-
-# Conexão com o SQL Server
-conexao = pyodbc.connect(
-    "DRIVER={ODBC Driver 18 for SQL Server};"
-    "SERVER= 'Colocar o Servidor' ;" #Falta colocar o servidor!
-    "DATABASE=PriceWatch;"
-    "Trusted_Connection=yes;"
-    "TrustServerCertificate=yes;"
-)
-
-
 @app.route("/")
 def home():
-    return jsonify({
-        "mensagem": "API PriceWatch funcionando"
-    })
+    return render_template("index.html")
+
+
+@app.route("/login")
+def login():
+    return render_template("login.html")
+
+
+@app.route("/dashboard")
+def dashboard():
+    return render_template("dashboard.html")
 
 
 @app.route("/api/produtos", methods=["GET"])
-def listar_produtos():
+def listar_produtos_api():
 
-    cursor = conexao.cursor()
+    try:
+        produtos = listar_produtos()
 
-    cursor.execute("""
-        SELECT
-            id_produtos,
-            nome_produto,
-            modelo_produto,
-            marca_produto,
-            armazenamento,
-            cor,
-            id_categoria
-        FROM Produtos
-    """)
+        return jsonify(produtos)
 
-    produtos = []
+    except Exception as erro:
+        print(f"Erro ao listar produtos: {erro}")
 
-    for produto in cursor.fetchall():
+        return jsonify({
+            "erro": "Não foi possível consultar os produtos."
+        }), 500
 
-        produtos.append({
-            "id": produto.id_produtos,
-            "nome": produto.nome_produto,
-            "modelo": produto.modelo_produto,
-            "marca": produto.marca_produto,
-            "armazenamento": produto.armazenamento,
-            "cor": produto.cor,
-            "id_categoria": produto.id_categoria
-        })
-
-    return jsonify(produtos)
+@app.route("/api/historico-precos", methods=["GET"])
+def listar_historico_precos_api():
+    try:
+        historico = listar_historico_precos()
+        return jsonify(historico)
+    except Exception as erro:
+        print(f"Erro ao listar histórico de preços: {erro}")
+        return jsonify({
+            "erro": "Não foi possível consultar o histórico de preços."
+        }), 500
 
 
 if __name__ == "__main__":
