@@ -75,9 +75,3 @@ Tabela Historico de preço
 Guarda o preço de cada produto ao longo do tempo e por loja
  é esse histórico que permite comparar preços passados e indicar a melhor loja pra comprar
 */
-
-
-ALTER TABLE clientes
-ADD COLUMN cpf VARCHAR(11) NOT NULL;
-
-SELECT * FROM clientes;

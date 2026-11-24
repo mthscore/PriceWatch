@@ -50,7 +50,7 @@ VALUES ('Processador','AMD','Ryzen 5 5600', NULL, NULL, 1),
  		 ('Smartphone', 'Samsung', 'Galaxy A15','128GB','Azul', 5);
  		 
  		 
-INSERT INTO historico_preco (id_produtos, id_loja, preco_obtido, historico_dataehora)
+INSERT INTO historico_preco (id_produto, id_loja, preco_obtido, historico_dataehora)
 VALUES (1, 4, 749.90, '2026-11-10 14:30:00'),
        (2, 4, 2149.90, '2026-09-15 10:00:00'),
        (2, 5, 2049.90, '2026-10-12 16:20:00'),
@@ -88,7 +88,7 @@ VALUES (1, 4, 749.90, '2026-11-10 14:30:00'),
        (25, 3, 899.00, '2026-11-16 20:25:00');
 
 
-INSERT INTO favoritos (id_clientes, id_produtos, data_adicionado)
+INSERT INTO favoritos (id_cliente, id_produto, data_adicionado)
 VALUES (1, 2, '2026-11-01'),
        (2, 21, '2026-11-03'),
        (3, 11, '2026-11-05'),
