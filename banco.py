@@ -1,22 +1,24 @@
 
-import mariadb
+import os
+import pymysql
 
 
 # estabelece conexão com o banco de dados
 def conectar():
 
     try:
-        conexao = mariadb.connect(
-            user="root",
-            password="4127",
-            host="localhost",
+        conexao = pymysql.connect(
+            user="u_6ogwfptvhp",
+            password=os.environ["DB_PASSWORD"],
+            host="pricewatch-wv0fza.db.enzonic.com",
             port=3306,
-            database="PriceWatch"
+            database="main",
+            ssl={"ssl": {}}
         )
 
         return conexao
 
-    except mariadb.Error as erro:
+    except pymysql.MySQLError as erro:
         print(f"Erro ao conectar ao banco: {erro}")
         raise
 
@@ -50,13 +52,12 @@ def listar_produtos():
 
         return produtos
 
-    except mariadb.Error as erro:
+    except pymysql.MySQLError as erro:
         print(f"Erro ao consultar produtos: {erro}")
         raise
 
     finally:
         conexao.close()
-
 
 
 # lista o histórico de preços dos produtos e suas respectivas lojas
@@ -95,7 +96,7 @@ def listar_historico_precos():
 
         return historico
 
-    except mariadb.Error as erro:
+    except pymysql.MySQLError as erro:
         print(f"Erro ao consultar histórico de preços: {erro}")
         raise
 
