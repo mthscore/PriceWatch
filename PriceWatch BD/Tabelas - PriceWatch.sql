@@ -1,9 +1,10 @@
 CREATE TABLE Clientes(
-	id_clientes INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+	id_cliente INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
 	nome_cliente VARCHAR(150) NOT NULL,
+	cpf VARCHAR(11) NOT NULL,
 	email VARCHAR(150) NOT NULL,
 	telefone VARCHAR(20) NOT NULL,
-	endereço VARCHAR(150) NOT NULL
+	endereco VARCHAR(150) NOT NULL
 	);
 	/*
 Tabela Clientes
@@ -17,7 +18,7 @@ CREATE TABLE Loja(
 	 /*
 	Tabela Loja
 Guarda as lojas que estão sendo monitoradas pelo sistema
-(ex: Pichau, Kabum, Terabyteshop)
+(ex: Pichau e Kabum)
 */
 
 CREATE TABLE Categorias(
@@ -26,7 +27,7 @@ CREATE TABLE Categorias(
 	);
 	/*
 Tabela Categorias
-Guarda os nichos/segmentos de produto (ex: Tecnologia, Vestuario e Eletrodomesticos)
+Guarda os nichos/segmentos de produto (ex: Tecnologia)
 e cada produto pertence a uma categoria
 */
 
@@ -48,12 +49,12 @@ Armazena os dados de cada produto monitorado
 */
 
 CREATE TABLE Favoritos(
-	id_favoritos INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+	id_favorito INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     data_adicionado DATETIME NOT NULL,
-    id_clientes INT NOT NULL,
-    id_produtos INT NOT NULL,
-    FOREIGN KEY (id_clientes) REFERENCES Clientes(id_clientes), 
-    FOREIGN KEY (id_produtos) REFERENCES Produtos(id_produto)
+    id_cliente INT NOT NULL,
+    id_produto INT NOT NULL,
+    FOREIGN KEY (id_cliente) REFERENCES Clientes(id_cliente), 
+    FOREIGN KEY (id_produto) REFERENCES Produtos(id_produto)
     );
 	/*
 Tabela Favoritos
@@ -65,9 +66,9 @@ CREATE TABLE Historico_Preco(
 	id_historico INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
 	preco_obtido DECIMAL(10,2) NOT NULL,
 	historico_dataehora DATETIME NOT NULL,
-	id_produtos INT NOT NULL,
+	id_produto INT NOT NULL,
 	id_loja INT NOT NULL,
-	FOREIGN KEY(id_produtos) REFERENCES Produtos(id_produto),
+	FOREIGN KEY(id_produto) REFERENCES Produtos(id_produto),
 	FOREIGN KEY(id_loja) REFERENCES Loja(id_loja)
 	);
 	/*

@@ -1,4 +1,4 @@
-INSERT INTO clientes (nome_cliente, cpf, telefone, email, endereço)
+INSERT INTO clientes (nome_cliente, cpf, telefone, email, endereco)
 VALUES ('Lucas Henrique Almeida', '38472915604', '11981234567', 'lucas.almeida@gmail.com', 'Rua das Acácias, 120 - Santo André - SP'),
   		 ('Mariana Souza Ribeiro', '52961837405', '11976543210', 'mariana.ribeiro@gmail.com', 'Rua Oliveira Lima, 56 - São Caetano do Sul - SP'),
   		 ('Rafael Costa Menezes', '14793625810', '11998761122', 'rafael.menezes@hotmail.com', 'Rua Augusta, 1370 - São Paulo - SP'),
